@@ -70,10 +70,8 @@ while True:
         print("\nVocê errou!")
         break
       if len(sequencia_usuario) == len(sequencia_jogo):
+        time.sleep(.5)
         send_space()  # Simula o pressionamento de Space para iniciar a próxima rodada
-        time.sleep(.75)
-      
-
 
 print("\nFim do jogo.")
 print("\nSequência correta:     ", [list(teclas_validas.keys())[list(teclas_validas.values()).index(t)] for t in sequencia_jogo])

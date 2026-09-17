@@ -39,7 +39,7 @@ def print_instructions():
 def tempo_espera(iteracao=0):
     import time
     """Retorna o tempo de espera entre as cores, mas não abaixo do mínimo."""
-    tempo_minimo = 0.25
+    tempo_minimo = 0.2
     tempo_maximo = 1
     novo_tempo = tempo_minimo + (tempo_maximo - tempo_minimo) * math.exp(-0.5 * iteracao)
     time.sleep(novo_tempo)
@@ -60,7 +60,6 @@ def pisca(cor, iteracao=0):
             print("    I    ")
             print("         ")
             print("         ")
-            print(COR_RESET, end="")
         case 1:
             print(COR_VERDE, end="")
             print("         ")
@@ -79,11 +78,14 @@ def pisca(cor, iteracao=0):
             print("         ")
             print("    K    ")
             print(COR_RESET, end="")
+
+    print(COR_RESET, end="")
+    print("\033[3A", end="")
     if iteracao >= 0:
         tempo_espera(iteracao)
+        print("         ")
+        print("         ")
+        print("         ")
         print("\033[3A", end="")
-        print("         ")
-        print("         ")
-        print("         ")
-    print("\033[3A", end="")
-
+        time.sleep(0.075)
+    

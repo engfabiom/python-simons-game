@@ -36,6 +36,13 @@ def print_instructions():
     print("Pressione [Enter] para começar o jogo ou 'Q' para sair a qualquer momento.")
     print("")
 
+def print_final_jogo(sequencia_jogo, sequencia_usuario):
+    print("\nFim do jogo.")
+    print("\n    Sequência correta: ", sequencia_jogo)
+    print("Sequência pressionada: ", sequencia_usuario)
+    print(f"\nSua pontuação foi (nível.acertos): {len(sequencia_jogo)}.{len(sequencia_usuario) - 1}")
+    print("Obrigado por jogar!")
+
 def tempo_espera(iteracao=0):
     import time
     """Retorna o tempo de espera entre as cores, mas não abaixo do mínimo."""
@@ -49,30 +56,29 @@ COR_VERDE    = '\033[92m'
 COR_AZUL     = '\033[94m'
 COR_AMARELO  = '\033[93m'
 COR_RESET    = '\033[0m'
-def pisca(cor, iteracao=0):
+def pisca(letra, iteracao=0):
     import time
-
-    # cor é 0 = Vermelho, 1 = Verde, 2 = Azul, 3 = Amarelo
+    # letra é "I" = Vermelho, "J" = Verde, "L" = Azul, "K" = Amarelo
     """Simula o piscar de uma cor na tela."""
-    match cor:
-        case 0:
+    match letra:
+        case "I": # Vermelho
             print(COR_VERMELHO, end="")
             print("    I    ")
             print("         ")
             print("         ")
-        case 1:
+        case "J": # Verde
             print(COR_VERDE, end="")
             print("         ")
             print(" J       ")
             print("         ")
             print(COR_RESET, end="")
-        case 2:
+        case "L": # Azul
             print(COR_AZUL, end="")
             print("         ")
             print("       L ")
             print("         ")
             print(COR_RESET, end="")
-        case 3:
+        case "K": # Amarelo
             print(COR_AMARELO, end="")
             print("         ")
             print("         ")

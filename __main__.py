@@ -43,7 +43,7 @@ utils.print_instructions()
 
 sequencia_jogo = []
 sequencia_usuario = []
-teclas_validas = { "I": 0, "J": 1, "L": 2, "K": 3 }
+teclas_validas = ["I", "J", "L", "K"]
 
 jogo_iniciado = False
 tecla_raw = ''
@@ -59,24 +59,20 @@ while True:
     break
   if jogo_iniciado:
     if len(sequencia_usuario) == len(sequencia_jogo):
-      sequencia_jogo.append(random.randint(0, 3))
+      sequencia_jogo.append(teclas_validas[random.randint(0, 3)])
       for cor in sequencia_jogo:
         utils.pisca(cor, len(sequencia_jogo))
       sequencia_usuario = []
     if tecla in teclas_validas:
-      utils.pisca(teclas_validas[tecla], -1)
+      utils.pisca(tecla, -1)
       sequencia_usuario.append(tecla)
-      if teclas_validas[sequencia_usuario[len(sequencia_usuario)-1]] != sequencia_jogo[len(sequencia_usuario)-1]:
+      if sequencia_usuario[len(sequencia_usuario)-1] != sequencia_jogo[len(sequencia_usuario)-1]:
         print("\nVocê errou!")
         break
       if len(sequencia_usuario) == len(sequencia_jogo):
         time.sleep(.5)
         send_space()  # Simula o pressionamento de Space para iniciar a próxima rodada
 
-print("\nFim do jogo.")
-print("\nSequência correta:     ", [list(teclas_validas.keys())[list(teclas_validas.values()).index(t)] for t in sequencia_jogo])
-print(f"Sequência pressionadas: {sequencia_usuario}")
-print(f"\nSua pontuação foi (nível.acertos): {len(sequencia_jogo)}.{len(sequencia_usuario) - 1}")
-print("Obrigado por jogar!")
+utils.print_final_jogo(sequencia_jogo, sequencia_usuario)
 
 exit(0)
